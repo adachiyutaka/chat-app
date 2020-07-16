@@ -2,11 +2,8 @@ class MessagesController < ApplicationController
   def index
     @message = Message.new
     @room = Room.find(params[:room_id])
+    @messages = @room.messages.includes(:user)
   end
-
-  # def create
-  #   Message.create(message_params)
-  # end
 
   def create
     @room = Room.find(params[:room_id])
@@ -19,9 +16,6 @@ class MessagesController < ApplicationController
   end
 
   private
-  # def message_params
-  #   params.require(:message).permit(:content).merge(room_id: params[:room_id], user_id: current_user.id)
-  # end
 
   def message_params
     params.require(:message).permit(:content).merge(user_id: current_user.id)
