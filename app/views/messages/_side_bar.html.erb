@@ -12,7 +12,7 @@
   <% current_user.rooms.each do |room|%>
     <div class="room">
       <div class="room-name">
-        <%= link_to "#" do%>
+        <%= link_to room_messages_path(room), method: :get do%>
           <%= room.name %>
         <% end %>
       </div>
